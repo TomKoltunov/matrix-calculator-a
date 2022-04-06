@@ -2,17 +2,7 @@
 using namespace std;
 
 namespace zich
-{
-    Matrix::Matrix(const vector<double>& mat, int length, int width)
-    {
-
-    }
-
-    Matrix::Matrix(const Matrix& mat)
-    {
-
-    }
-    
+{   
     Matrix Matrix::operator+(const Matrix& other) const
     {
         return *this;
@@ -103,14 +93,19 @@ namespace zich
         return *this;
     }
 
-    ostream& operator<< (ostream& output, const Matrix& mat)
+    ostream& operator<<(ostream& output, const Matrix& mat)
     {
-        
+        return output;
     }
 
-    // Matrix Matrix::operator*(double number, Matrix& mat)
-    // {
-    //     Matrix answer(mat._mat, mat._length. mat._width);
-    //     return answer;
-    // }
+    istream& operator>>(istream& input , Matrix& mat)
+    {
+        return input;
+    }
+
+    Matrix operator*(double number, Matrix& mat)
+    {
+        Matrix answer(mat._mat, mat._length, mat._width);
+        return answer;
+    }
 }

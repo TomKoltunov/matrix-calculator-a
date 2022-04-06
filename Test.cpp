@@ -5,7 +5,6 @@
  * @date 2022-04
  */
 
-#define DOCTEST_CONFIG_IMPLEMENT
 #include "doctest.h"
 #include "Matrix.hpp"
 using namespace doctest;
@@ -32,15 +31,34 @@ TEST_CASE("Good inputs")
     CHECK_NOTHROW(mat2 -= mat1);
 
     CHECK_NOTHROW(0 * mat1);
-    CHECK_NOTHROW(1 * mat1);
+    CHECK_NOTHROW(1 * mat2);
+
+    vector<double> vec3 = {1, 0, 0, 1};
+    vector<double> vec4 = {0, 0, 0, 0};
+    Matrix mat3(vec3, 2, 2);
+    Matrix mat4(vec4, 2, 2);
+
+    CHECK_NOTHROW(+mat3);
+    CHECK_NOTHROW(+mat4);
+
+    CHECK_NOTHROW(mat3 += mat4);
+    CHECK_NOTHROW(mat4 += mat3);
+
+    CHECK_NOTHROW(-mat3);
+    CHECK_NOTHROW(-mat4);
+
+    CHECK_NOTHROW(mat3 -= mat4);
+    CHECK_NOTHROW(mat4 -= mat3);
+
+    CHECK_NOTHROW(0 * mat3);
+    CHECK_NOTHROW(1 * mat4);
 }
 
 TEST_CASE("Bad inputs")
 {
     vector<double> vec = {1, 0, 0, 0, 1, 0, 0, 0, 1};
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= 20; i++)
     {
-        Matrix mat(vec, i, i + 1);
-        CHECK_THROWS(mat);
+        CHECK_THROWS(Matrix mat(vec, i, i + 1));
     }
 }

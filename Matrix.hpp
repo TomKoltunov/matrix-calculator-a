@@ -13,9 +13,7 @@ namespace zich
             int _width;
 
         public:
-            Matrix(const vector<double>& mat, int length, int width); 
-            
-            Matrix(const Matrix& mat);
+            Matrix(const vector<double>& mat, int length, int width) : _mat(mat), _length(length), _width(width) {}; 
 
             Matrix operator+(const Matrix& other) const;
             Matrix& operator+=(const Matrix& other);
@@ -40,8 +38,8 @@ namespace zich
             Matrix operator++(int);
             Matrix operator--(int);
 
-            friend ostream& operator<< (ostream& output, const Matrix& mat);
-            friend istream& operator>> (istream& input , Matrix& mat);
+            friend ostream& operator<<(ostream& output, const Matrix& mat);
+            friend istream& operator>>(istream& input , Matrix& mat);
             friend Matrix operator*(double number, Matrix& mat);
     };
 }
